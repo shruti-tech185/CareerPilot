@@ -10,7 +10,7 @@ const aiBtn = document.querySelector(".ai-section .primary-btn");
 
 // Login button
 loginBtn.addEventListener("click", function () {
-    alert("CareerPilot Login will be available soon!");
+     window.location.href = "login.html";
 });
 
 
