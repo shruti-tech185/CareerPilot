@@ -1,0 +1,256 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerPilot - ShrutiGuide AI</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .ai-page {
+            min-height: 80vh;
+            padding: 60px 7%;
+        }
+
+        .ai-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .ai-header h1 {
+            font-size: 40px;
+            color: #172033;
+            margin-bottom: 12px;
+        }
+
+        .ai-header p {
+            color: #667085;
+            font-size: 17px;
+        }
+
+        .robot-icon {
+            font-size: 70px;
+            margin-bottom: 10px;
+        }
+
+        .chat-box {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .ai-message {
+            background: #eef2ff;
+            padding: 18px;
+            border-radius: 14px;
+            color: #344054;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .question-box {
+            display: flex;
+            gap: 12px;
+        }
+
+        .question-box input {
+            flex: 1;
+            padding: 14px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .question-box button {
+            padding: 14px 22px;
+            background: #4f46e5;
+            color: white;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .question-box button:hover {
+            background: #4338ca;
+        }
+
+        .suggestions {
+            margin-top: 25px;
+        }
+
+        .suggestions h3 {
+            color: #172033;
+            margin-bottom: 15px;
+        }
+
+        .suggestion {
+            display: inline-block;
+            padding: 10px 14px;
+            margin: 5px;
+            background: #f6f8fc;
+            border: 1px solid #e4e7ec;
+            border-radius: 20px;
+            color: #475467;
+            cursor: pointer;
+        }
+
+        .suggestion:hover {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+
+        @media (max-width: 600px) {
+            .ai-header h1 {
+                font-size: 30px;
+            }
+
+            .question-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">CareerPilot</div>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="careers.html">Careers</a>
+            <a href="skills.html">Skills</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="ai-page">
+
+        <div class="ai-header">
+
+            <div class="robot-icon">🤖</div>
+
+            <h1>Meet ShrutiGuide AI</h1>
+
+            <p>
+                Your personal AI career and learning companion.
+            </p>
+
+        </div>
+
+        <div class="chat-box">
+
+            <div class="ai-message" id="aiMessage">
+
+                👋 Hi! I'm <strong>ShrutiGuide AI</strong>.
+
+                <br><br>
+
+                I can help you with:
+                <br>
+                🎯 Career choices
+                <br>
+                📚 Learning roadmaps
+                <br>
+                💡 Skill development
+                <br>
+                📝 Interview preparation
+                <br>
+                📅 Study planning
+
+            </div>
+
+            <div class="question-box">
+
+                <input
+                    type="text"
+                    id="questionInput"
+                    placeholder="Ask ShrutiGuide AI about your career..."
+                >
+
+                <button onclick="askAI()">Ask AI</button>
+
+            </div>
+
+            <div class="suggestions">
+
+                <h3>Try asking:</h3>
+
+                <span class="suggestion"
+                    onclick="useQuestion('Which career is best for me?')">
+                    Which career is best for me?
+                </span>
+
+                <span class="suggestion"
+                    onclick="useQuestion('What skills should I learn?')">
+                    What skills should I learn?
+                </span>
+
+                <span class="suggestion"
+                    onclick="useQuestion('How can I prepare for an interview?')">
+                    Interview preparation
+                </span>
+
+                <span class="suggestion"
+                    onclick="useQuestion('Create a study plan for me')">
+                    Create a study plan
+                </span>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        function useQuestion(question) {
+
+            document.getElementById("questionInput").value = question;
+
+        }
+
+
+        function askAI() {
+
+            const question =
+                document.getElementById("questionInput").value.trim();
+
+            const message =
+                document.getElementById("aiMessage");
+
+
+            if (question === "") {
+
+                message.innerHTML =
+                    "⚠️ Please enter a question first.";
+
+                return;
+            }
+
+
+            message.innerHTML =
+                "🤖 <strong>ShrutiGuide AI:</strong><br><br>" +
+
+                "Great question! I will help you understand " +
+                "your career options, required skills and learning path." +
+
+                "<br><br>" +
+
+                "<em>Gemini AI integration will be connected " +
+                "through the secure backend.</em>";
+
+        }
+
+    </script>
+
+</body>
+</html>
+```
