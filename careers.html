@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPilot - Career Explorer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f8fc;
+            color: #172033;
+        }
+
+        .navbar {
+            background: #ffffff;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #4f46e5;
+        }
+
+        .back-btn {
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 88%;
+            max-width: 1200px;
+            margin: 45px auto;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .heading h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 35px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: #4f46e5;
+        }
+
+        .search-box button {
+            padding: 14px 22px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .career-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s ease;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .career-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2ff;
+            border-radius: 12px;
+            font-size: 25px;
+            margin-bottom: 18px;
+        }
+
+        .career-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .career-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .skill {
+            background: #f1f3f8;
+            padding: 7px 10px;
+            border-radius: 7px;
+            font-size: 12px;
+            color: #444;
+        }
+
+        .explore-btn {
+            width: 100%;
+            padding: 11px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .explore-btn:hover {
+            background: #4338ca;
+        }
+
+        @media (max-width: 900px) {
+            .career-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .career-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .heading h1 {
+                font-size: 27px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">CareerPilot</div>
+        <a href="dashboard.html" class="back-btn">← Dashboard</a>
+    </nav>
+
+    <main class="container">
+
+        <div class="heading">
+            <h1>Explore Your Career 🚀</h1>
+            <p>Discover career options and learn which skills you need to build.</p>
+        </div>
+
+        <div class="search-box">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search career...">
+            <button onclick="searchCareers()">Search</button>
+        </div>
+
+        <div class="career-grid" id="careerGrid">
+
+            <div class="career-card">
+                <div class="career-icon">💻</div>
+
+                <h2>Web Developer</h2>
+
+                <p>
+                    Build websites and web applications using modern
+                    frontend and backend technologies.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">HTML</span>
+                    <span class="skill">CSS</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">React</span>
+                </div>
+
+                <button class="explore-btn"
+                    onclick="showCareer('Web Developer')">
+                    Explore Career
+                </button>
+            </div>
+
+            <div class="career-card">
+                <div class="career-icon">📊</div>
+
+                <h2>Data Analyst</h2>
+
+                <p>
+                    Analyze data and create useful insights that help
+                    businesses make better decisions.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">Excel</span>
+                    <span class="skill">SQL</span>
+                    <span class="skill">Python</span>
+                    <span class="skill">Power BI</span>
+                </div>
+
+                <button class="explore-btn"
+                    onclick="showCareer('Data Analyst')">
+                    Explore Career
+                </button>
+            </div>
+
+            <div class="career-card">
+                <div class="career-icon">🤖</div>
+
+                <h2>AI / ML Engineer</h2>
+
+                <p>
+                    Work with artificial intelligence and machine
+                    learning to build intelligent systems.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">Python</span>
+                    <span class="skill">ML</span>
+                    <span class="skill">AI</span>
+                    <span class="skill">Statistics</span>
+                </div>
+
+                <button class="explore-btn"
+                    onclick="showCareer('AI / ML Engineer')">
+                    Explore Career
+                </button>
+            </div>
+
+            <div class="career-card">
+                <div class="career-icon">☁️</div>
+
+                <h2>Cloud Engineer</h2>
+
+                <p>
+                    Manage cloud infrastructure and deploy scalable
+                    applications and services.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">AWS</span>
+                    <span class="skill">Azure</span>
+                    <span class="skill">Linux</span>
+                    <span class="skill">Docker</span>
+                </div>
+
+                <button class="explore-btn"
+                    onclick="showCareer('Cloud Engineer')">
+                    Explore Career
+                </button>
+            </div>
+
+            <div class="career-card">
+                <div class="career-icon">🔐</div>
+
+                <h2>Cybersecurity</h2>
+
+                <p>
+                    Protect systems, networks and data from security
+                    threats and cyber attacks.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">Networking</span>
+                    <span class="skill">Linux</span>
+                    <span class="skill">Security</span>
+                    <span class="skill">Python</span>
+                </div>
+
+                <button class="explore-btn"
+                    onclick="showCareer('Cybersecurity')">
+                    Explore Career
+                </button>
+            </div>
+
+            <div class="career-card">
+                <div class="career-icon">🎨</div>
+
+                <h2>UI/UX Designer</h2>
+
+                <p>
+                    Design simple, attractive and user-friendly digital
+                    experiences for websites and applications.
+                </p>
+
+                <div class="skills">
+                    <span class="skill">Figma</span>
+                    <span class="skill">UI Design</span>
+                    <span class="skill">UX</span>
+                    <span class="skill">Research</span>
+                </div>
+
+                <button class="explore-btn"
+                    onclick="showCareer('UI/UX Designer')">
+                    Explore Career
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        function showCareer(career) {
+            alert(
+                career +
+                " selected! CareerPilot will show your required skills and learning roadmap soon."
+            );
+        }
+
+        function searchCareers() {
+
+            const searchValue =
+                document.getElementById("searchInput").value.toLowerCase();
+
+            const cards =
+                document.querySelectorAll(".career-card");
+
+            cards.forEach(function(card) {
+
+                const careerName =
+                    card.querySelector("h2").innerText.toLowerCase();
+
+                if (careerName.includes(searchValue)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+
+            });
+        }
+    </script>
+
+</body>
+</html>
