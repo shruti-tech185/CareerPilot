@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareerPilot - Dashboard</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f8fc;
+            color: #172033;
+        }
+
+        .navbar {
+            background: #ffffff;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #4f46e5;
+        }
+
+        .profile {
+            background: #eef2ff;
+            padding: 10px 16px;
+            border-radius: 20px;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1200px;
+            margin: 40px auto;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .goal-card {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 30px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+        }
+
+        .goal-card p {
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .goal-card h2 {
+            font-size: 28px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4f46e5;
+        }
+
+        .section {
+            background: #ffffff;
+            padding: 28px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+        }
+
+        .skill {
+            margin-bottom: 18px;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 7px;
+        }
+
+        .progress-bg {
+            height: 9px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            background: #4f46e5;
+            border-radius: 10px;
+        }
+
+        .task {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .task button {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .ai-box {
+            background: #eef2ff;
+            padding: 25px;
+            border-radius: 14px;
+        }
+
+        .ai-box p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .ai-btn {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 9px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        @media (max-width: 800px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 92%;
+            }
+
+            .welcome h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">CareerPilot</div>
+        <div class="profile">Student Profile</div>
+    </nav>
+
+    <main class="container">
+
+        <div class="welcome">
+            <h1>Welcome to your Dashboard 👋</h1>
+            <p>Track your learning, skills and career progress in one place.</p>
+        </div>
+
+        <div class="goal-card">
+            <p>Current Career Goal</p>
+            <h2>Frontend Developer</h2>
+        </div>
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Overall Progress</h3>
+                <div class="number">68%</div>
+            </div>
+
+            <div class="card">
+                <h3>Skills Learning</h3>
+                <div class="number">6</div>
+            </div>
+
+            <div class="card">
+                <h3>Tasks Completed</h3>
+                <div class="number">24</div>
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <h2>My Skills</h2>
+
+            <div class="skill">
+                <div class="skill-header">
+                    <span>HTML & CSS</span>
+                    <span>90%</span>
+                </div>
+
+                <div class="progress-bg">
+                    <div class="progress" style="width: 90%;"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-header">
+                    <span>JavaScript</span>
+                    <span>65%</span>
+                </div>
+
+                <div class="progress-bg">
+                    <div class="progress" style="width: 65%;"></div>
+                </div>
+            </div>
+
+            <div class="skill">
+                <div class="skill-header">
+                    <span>React.js</span>
+                    <span>40%</span>
+                </div>
+
+                <div class="progress-bg">
+                    <div class="progress" style="width: 40%;"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <h2>Today's Tasks</h2>
+
+            <div class="task">
+                <span>Learn JavaScript Functions</span>
+                <button onclick="completeTask(this)">Complete</button>
+            </div>
+
+            <div class="task">
+                <span>Practice JavaScript Arrays</span>
+                <button onclick="completeTask(this)">Complete</button>
+            </div>
+
+            <div class="task">
+                <span>Build a Mini Project</span>
+                <button onclick="completeTask(this)">Complete</button>
+            </div>
+
+        </div>
+
+        <div class="section">
+
+            <h2>CareerPilot AI Assistant 🤖</h2>
+
+            <div class="ai-box">
+                <p>
+                    Confused about what to learn next?
+                    Ask CareerPilot AI for personalized career guidance.
+                </p>
+
+                <button class="ai-btn" onclick="openAI()">
+                    Ask CareerPilot AI
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        function completeTask(button) {
+            button.innerText = "Completed ✓";
+            button.style.background = "#16a34a";
+            button.disabled = true;
+        }
+
+        function openAI() {
+            alert("CareerPilot AI will be connected with Gemini API soon!");
+        }
+    </script>
+
+</body>
+</html>
