@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Learning Resources - CareerPilot</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f8fc;
+            color: #172033;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #4f46e5;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .heading {
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #667085;
+        }
+
+        .filter-box {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        select {
+            width: 100%;
+            max-width: 350px;
+            padding: 12px;
+            border: 1px solid #d0d5dd;
+            border-radius: 9px;
+            font-size: 15px;
+        }
+
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            transition: 0.2s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .resource-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .resource-card p {
+            color: #667085;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .resource-card a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background: #4f46e5;
+            padding: 10px 16px;
+            border-radius: 9px;
+            font-weight: 600;
+        }
+
+        .resource-card a:hover {
+            background: #4338ca;
+        }
+
+        @media (max-width: 800px) {
+            .resources {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 550px) {
+            .resources {
+                grid-template-columns: 1fr;
+            }
+
+            .heading h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">CareerPilot</div>
+    <a href="dashboard.html">← Dashboard</a>
+</header>
+
+<div class="container">
+
+    <div class="heading">
+        <h1>Learning Resources 📚</h1>
+        <p>Choose your career and explore useful learning topics.</p>
+    </div>
+
+    <div class="filter-box">
+
+        <label for="career">
+            <strong>Select Career</strong>
+        </label>
+
+        <br><br>
+
+        <select id="career">
+            <option value="frontend">Frontend Developer</option>
+            <option value="data">Data Analyst</option>
+            <option value="ai">AI / ML Engineer</option>
+        </select>
+
+    </div>
+
+    <div class="resources" id="resources"></div>
+
+</div>
+
+<script>
+
+    const careerSelect = document.getElementById("career");
+    const resources = document.getElementById("resources");
+
+    const resourceData = {
+
+        frontend: [
+            {
+                icon: "🌐",
+                title: "HTML & CSS",
+                description: "Learn web page structure, styling, layouts and responsive design."
+            },
+            {
+                icon: "⚡",
+                title: "JavaScript",
+                description: "Learn variables, functions, arrays, objects, DOM and events."
+            },
+            {
+                icon: "⚛️",
+                title: "React.js",
+                description: "Learn components, props, state, hooks and modern React development."
+            },
+            {
+                icon: "🔗",
+                title: "APIs",
+                description: "Understand APIs, HTTP requests and how applications communicate."
+            },
+            {
+                icon: "🛠️",
+                title: "Projects",
+                description: "Build real projects to strengthen your development skills."
+            },
+            {
+                icon: "💼",
+                title: "Interview Preparation",
+                description: "Practice common frontend interview questions and concepts."
+            }
+        ],
+
+        data: [
+            {
+                icon: "📊",
+                title: "Excel",
+                description: "Learn formulas, functions, charts and data analysis in Excel."
+            },
+            {
+                icon: "🗄️",
+                title: "SQL",
+                description: "Learn queries, filtering, joins, grouping and database basics."
+            },
+            {
+                icon: "🐍",
+                title: "Python",
+                description: "Learn Python basics, data handling and useful libraries."
+            },
+            {
+                icon: "📈",
+                title: "Power BI",
+                description: "Learn dashboards, reports and interactive data visualization."
+            },
+            {
+                icon: "🔍",
+                title: "Data Analysis",
+                description: "Learn how to clean, analyze and understand datasets."
+            },
+            {
+                icon: "💼",
+                title: "Interview Preparation",
+                description: "Practice important data analyst interview questions."
+            }
+        ],
+
+        ai: [
+            {
+                icon: "🐍",
+                title: "Python",
+                description: "Build strong Python programming fundamentals for AI and ML."
+            },
+            {
+                icon: "📐",
+                title: "Statistics",
+                description: "Learn probability, statistics and mathematical concepts for ML."
+            },
+            {
+                icon: "🤖",
+                title: "Machine Learning",
+                description: "Understand supervised, unsupervised and basic ML algorithms."
+            },
+            {
+                icon: "🧠",
+                title: "Artificial Intelligence",
+                description: "Explore AI concepts, applications and intelligent systems."
+            },
+            {
+                icon: "📚",
+                title: "Deep Learning",
+                description: "Learn neural networks and the fundamentals of deep learning."
+            },
+            {
+                icon: "💼",
+                title: "Interview Preparation",
+                description: "Practice AI and machine learning interview questions."
+            }
+        ]
+
+    };
+
+    function showResources() {
+
+        const selectedCareer = careerSelect.value;
+
+        resources.innerHTML = "";
+
+        resourceData[selectedCareer].forEach(resource => {
+
+            const card = document.createElement("div");
+
+            card.className = "resource-card";
+
+            card.innerHTML = `
+                <div class="icon">${resource.icon}</div>
+                <h3>${resource.title}</h3>
+                <p>${resource.description}</p>
+                <a href="https://www.google.com/search?q=${encodeURIComponent(resource.title + " tutorial")}" target="_blank">
+                    Learn More →
+                </a>
+            `;
+
+            resources.appendChild(card);
+
+        });
+    }
+
+    careerSelect.addEventListener("change", showResources);
+
+    showResources();
+
+</script>
+
+</body>
+</html>
