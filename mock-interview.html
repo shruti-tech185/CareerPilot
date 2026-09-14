@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerPilot - AI Mock Interview</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .interview-page {
+            min-height: 80vh;
+            padding: 60px 7%;
+        }
+
+        .interview-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .interview-header h1 {
+            font-size: 40px;
+            color: #172033;
+            margin-bottom: 12px;
+        }
+
+        .interview-header p {
+            color: #667085;
+            font-size: 17px;
+        }
+
+        .interview-box {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+        }
+
+        .career-select {
+            margin-bottom: 25px;
+        }
+
+        .career-select label {
+            display: block;
+            font-weight: 600;
+            color: #172033;
+            margin-bottom: 8px;
+        }
+
+        .career-select select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        .question-card {
+            background: #eef2ff;
+            padding: 22px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question-card h2 {
+            font-size: 21px;
+            color: #172033;
+            margin-bottom: 12px;
+        }
+
+        .question-card p {
+            color: #475467;
+            line-height: 1.6;
+        }
+
+        .answer-box textarea {
+            width: 100%;
+            min-height: 130px;
+            padding: 15px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            resize: vertical;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .interview-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .interview-actions button {
+            padding: 13px 22px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .next-btn {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .next-btn:hover {
+            background: #4338ca;
+        }
+
+        .reset-btn {
+            background: #f2f4f7;
+            color: #344054;
+        }
+
+        .feedback {
+            display: none;
+            margin-top: 25px;
+            padding: 18px;
+            background: #ecfdf3;
+            border-radius: 12px;
+            color: #166534;
+            line-height: 1.6;
+        }
+
+        .progress-text {
+            text-align: right;
+            color: #667085;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .interview-header h1 {
+                font-size: 30px;
+            }
+
+            .interview-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">CareerPilot</div>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="careers.html">Careers</a>
+            <a href="skills.html">Skills</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="interview-page">
+
+        <div class="interview-header">
+            <h1>AI Mock Interview 🎤</h1>
+
+            <p>
+                Practice interview questions and improve your confidence.
+            </p>
+        </div>
+
+        <div class="interview-box">
+
+            <div class="career-select">
+
+                <label for="career">
+                    Select Your Career
+                </label>
+
+                <select id="career" onchange="changeCareer()">
+
+                    <option value="frontend">
+                        Frontend Developer
+                    </option>
+
+                    <option value="data">
+                        Data Analyst
+                    </option>
+
+                    <option value="software">
+                        Software Developer
+                    </option>
+
+                    <option value="ai">
+                        AI / ML Engineer
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="progress-text" id="progressText">
+                Question 1 of 5
+            </div>
+
+            <div class="question-card">
+
+                <h2>Interview Question</h2>
+
+                <p id="questionText">
+                    What is HTML and why is it used in web development?
+                </p>
+
+            </div>
+
+            <div class="answer-box">
+
+                <textarea
+                    id="answer"
+                    placeholder="Write your answer here..."
+                ></textarea>
+
+            </div>
+
+            <div class="interview-actions">
+
+                <button class="next-btn" onclick="nextQuestion()">
+                    Submit Answer
+                </button>
+
+                <button class="reset-btn" onclick="resetInterview()">
+                    Restart
+                </button>
+
+            </div>
+
+            <div class="feedback" id="feedback">
+                🤖 <strong>ShrutiGuide AI Feedback:</strong>
+                <br><br>
+                Your answer has been submitted.
+                AI-powered detailed feedback will be connected
+                with Gemini API in the next stage.
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        const questions = {
+
+            frontend: [
+                "What is HTML and why is it used in web development?",
+                "What is the difference between Flexbox and CSS Grid?",
+                "What is JavaScript used for?",
+                "What is responsive web design?",
+                "What is React.js?"
+            ],
+
+            data: [
+                "What is data analysis?",
+                "What is SQL used for?",
+                "What is the difference between data and information?",
+                "What is a database?",
+                "Why is data visualization important?"
+            ],
+
+            software: [
+                "What is a programming language?",
+                "What is an algorithm?",
+                "What is object-oriented programming?",
+                "What is debugging?",
+                "What is version control?"
+            ],
+
+            ai: [
+                "What is Artificial Intelligence?",
+                "What is Machine Learning?",
+                "What is the difference between AI and ML?",
+                "What is a dataset?",
+                "What is a neural network?"
+            ]
+
+        };
+
+
+        let currentCareer = "frontend";
+        let currentQuestion = 0;
+
+
+        function changeCareer() {
+
+            currentCareer =
+                document.getElementById("career").value;
+
+            currentQuestion = 0;
+
+            showQuestion();
+
+        }
+
+
+        function showQuestion() {
+
+            const list = questions[currentCareer];
+
+            document.getElementById("questionText").textContent =
+                list[currentQuestion];
+
+            document.getElementById("progressText").textContent =
+                "Question " +
+                (currentQuestion + 1) +
+                " of " +
+                list.length;
+
+            document.getElementById("answer").value = "";
+
+            document.getElementById("feedback").style.display = "none";
+
+        }
+
+
+        function nextQuestion() {
+
+            const answer =
+                document.getElementById("answer").value.trim();
+
+            if (answer === "") {
+
+                alert("Please write your answer first.");
+
+                return;
+
+            }
+
+
+            document.getElementById("feedback").style.display =
+                "block";
+
+
+            const list = questions[currentCareer];
+
+
+            if (currentQuestion < list.length - 1) {
+
+                currentQuestion++;
+
+                setTimeout(showQuestion, 1200);
+
+            } else {
+
+                document.getElementById("progressText").textContent =
+                    "Interview Completed ✓";
+
+            }
+
+        }
+
+
+        function resetInterview() {
+
+            currentQuestion = 0;
+
+            showQuestion();
+
+        }
+
+    </script>
+
+</body>
+</html>
