@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Quiz - CareerPilot</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f8fc;
+            color: #172033;
+        }
+
+        header {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #4f46e5;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .heading {
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .heading p {
+            color: #667085;
+        }
+
+        .quiz-card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .progress {
+            height: 8px;
+            background: #e8eaf0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 20%;
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+        }
+
+        .question-number {
+            color: #4f46e5;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .question {
+            font-size: 23px;
+            line-height: 1.4;
+            margin-bottom: 25px;
+        }
+
+        .options {
+            display: grid;
+            gap: 14px;
+        }
+
+        .option {
+            padding: 16px;
+            border: 2px solid #e4e7ec;
+            border-radius: 12px;
+            background: white;
+            text-align: left;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            border-color: #4f46e5;
+            background: #f7f6ff;
+        }
+
+        .option.selected {
+            border-color: #4f46e5;
+            background: #eeecff;
+        }
+
+        .next-btn,
+        .restart-btn {
+            margin-top: 25px;
+            padding: 13px 22px;
+            border: none;
+            border-radius: 10px;
+            background: #4f46e5;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .restart-btn {
+            background: #7c3aed;
+            margin-left: 10px;
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .result h2 {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .score {
+            font-size: 50px;
+            font-weight: bold;
+            color: #4f46e5;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 92%;
+            }
+
+            .heading h1 {
+                font-size: 28px;
+            }
+
+            .question {
+                font-size: 20px;
+            }
+
+            .restart-btn {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">CareerPilot</div>
+    <a href="dashboard.html">← Dashboard</a>
+</header>
+
+<div class="container">
+
+    <div class="heading">
+        <h1>Practice Quiz 📝</h1>
+        <p>Test your knowledge and improve your skills.</p>
+    </div>
+
+    <div class="quiz-card">
+
+        <div id="quizArea">
+
+            <div class="progress">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="question-number" id="questionNumber">
+                Question 1 of 5
+            </div>
+
+            <h2 class="question" id="question">
+                Loading question...
+            </h2>
+
+            <div class="options" id="options"></div>
+
+            <button class="next-btn" id="nextBtn">
+                Next Question →
+            </button>
+
+        </div>
+
+        <div class="result" id="result">
+
+            <h2>Quiz Completed 🎉</h2>
+
+            <p>Your final score is:</p>
+
+            <div class="score" id="score">0 / 5</div>
+
+            <p id="message"></p>
+
+            <button class="restart-btn" onclick="restartQuiz()">
+                Try Again
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+    const questions = [
+        {
+            question: "Which language is used to structure a web page?",
+            options: ["CSS", "HTML", "JavaScript", "Python"],
+            answer: "HTML"
+        },
+
+        {
+            question: "Which language is mainly used for styling web pages?",
+            options: ["HTML", "CSS", "Java", "SQL"],
+            answer: "CSS"
+        },
+
+        {
+            question: "Which language makes web pages interactive?",
+            options: ["HTML", "CSS", "JavaScript", "XML"],
+            answer: "JavaScript"
+        },
+
+        {
+            question: "Which technology is commonly used to build React applications?",
+            options: ["JavaScript", "SQL", "PHP", "Excel"],
+            answer: "JavaScript"
+        },
+
+        {
+            question: "What does API stand for?",
+            options: [
+                "Application Programming Interface",
+                "Advanced Program Internet",
+                "Application Page Integration",
+                "Automated Programming Input"
+            ],
+            answer: "Application Programming Interface"
+        }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let selectedAnswer = "";
+
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    const questionNumber = document.getElementById("questionNumber");
+    const progressFill = document.getElementById("progressFill");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function loadQuestion() {
+
+        selectedAnswer = "";
+
+        const current = questions[currentQuestion];
+
+        questionNumber.textContent =
+            `Question ${currentQuestion + 1} of ${questions.length}`;
+
+        questionElement.textContent = current.question;
+
+        progressFill.style.width =
+            `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+        optionsElement.innerHTML = "";
+
+        current.options.forEach(option => {
+
+            const button = document.createElement("button");
+
+            button.className = "option";
+            button.textContent = option;
+
+            button.onclick = function () {
+
+                document.querySelectorAll(".option").forEach(btn => {
+                    btn.classList.remove("selected");
+                });
+
+                button.classList.add("selected");
+
+                selectedAnswer = option;
+            };
+
+            optionsElement.appendChild(button);
+        });
+    }
+
+    nextBtn.addEventListener("click", function () {
+
+        if (!selectedAnswer) {
+            alert("Please select an answer first.");
+            return;
+        }
+
+        if (selectedAnswer === questions[currentQuestion].answer) {
+            score++;
+        }
+
+        currentQuestion++;
+
+        if (currentQuestion < questions.length) {
+
+            loadQuestion();
+
+        } else {
+
+            document.getElementById("quizArea").style.display = "none";
+            document.getElementById("result").style.display = "block";
+
+            document.getElementById("score").textContent =
+                `${score} / ${questions.length}`;
+
+            if (score >= 4) {
+                document.getElementById("message").textContent =
+                    "Excellent! Keep learning and practicing. 🚀";
+            } else if (score >= 3) {
+                document.getElementById("message").textContent =
+                    "Good job! A little more practice will make you stronger. 💪";
+            } else {
+                document.getElementById("message").textContent =
+                    "Keep practicing. Every attempt helps you improve! 📚";
+            }
+        }
+    });
+
+    function restartQuiz() {
+
+        currentQuestion = 0;
+        score = 0;
+
+        document.getElementById("quizArea").style.display = "block";
+        document.getElementById("result").style.display = "none";
+
+        loadQuestion();
+    }
+
+    loadQuestion();
+
+</script>
+
+</body>
+</html>
