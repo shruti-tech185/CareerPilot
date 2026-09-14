@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CareerPilot - Study Planner</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .planner-page {
+            min-height: 80vh;
+            padding: 60px 7%;
+        }
+
+        .planner-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .planner-header h1 {
+            font-size: 40px;
+            color: #172033;
+            margin-bottom: 12px;
+        }
+
+        .planner-header p {
+            color: #667085;
+            font-size: 17px;
+        }
+
+        .planner-container {
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .add-task-box,
+        .tasks-box,
+        .progress-box {
+            background: white;
+            padding: 25px;
+            border-radius: 18px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+        }
+
+        .add-task-box h2,
+        .tasks-box h2,
+        .progress-box h2 {
+            color: #172033;
+            margin-bottom: 18px;
+        }
+
+        .task-inputs {
+            display: flex;
+            gap: 12px;
+        }
+
+        .task-inputs input,
+        .task-inputs select {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #d0d5dd;
+            border-radius: 10px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .task-inputs button {
+            padding: 13px 20px;
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .task-inputs button:hover {
+            background: #4338ca;
+        }
+
+        .task {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 16px;
+            border: 1px solid #eaecf0;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .task-info {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 600;
+            color: #172033;
+            margin-bottom: 5px;
+        }
+
+        .task-meta {
+            color: #667085;
+            font-size: 13px;
+        }
+
+        .complete-btn {
+            padding: 9px 14px;
+            border: none;
+            border-radius: 8px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .complete-btn.completed {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 14px;
+            background: #eaecf0;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: #4f46e5;
+            border-radius: 20px;
+            transition: width 0.4s ease;
+        }
+
+        .progress-text {
+            margin-top: 10px;
+            color: #475467;
+            font-weight: 600;
+        }
+
+        .empty-message {
+            color: #98a2b3;
+            text-align: center;
+            padding: 15px;
+        }
+
+        @media (max-width: 700px) {
+            .planner-page {
+                padding: 40px 5%;
+            }
+
+            .planner-header h1 {
+                font-size: 30px;
+            }
+
+            .task-inputs {
+                flex-direction: column;
+            }
+
+            .task {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">CareerPilot</div>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="careers.html">Careers</a>
+            <a href="skills.html">Skills</a>
+            <a href="roadmap.html">Roadmap</a>
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="planner-page">
+
+        <div class="planner-header">
+            <h1>Study Planner 📅</h1>
+            <p>Plan your learning tasks and track your daily progress.</p>
+        </div>
+
+        <div class="planner-container">
+
+            <div class="add-task-box">
+
+                <h2>Add a New Task</h2>
+
+                <div class="task-inputs">
+
+                    <input
+                        type="text"
+                        id="taskInput"
+                        placeholder="Enter study task..."
+                    >
+
+                    <select id="priorityInput">
+                        <option value="High">High Priority</option>
+                        <option value="Medium">Medium Priority</option>
+                        <option value="Low">Low Priority</option>
+                    </select>
+
+                    <button onclick="addTask()">
+                        Add Task
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-box">
+
+                <h2>Today's Progress</h2>
+
+                <div class="progress-bar">
+                    <div
+                        class="progress-fill"
+                        id="progressFill">
+                    </div>
+                </div>
+
+                <div
+                    class="progress-text"
+                    id="progressText">
+                    0% completed
+                </div>
+
+            </div>
+
+
+            <div class="tasks-box">
+
+                <h2>My Study Tasks</h2>
+
+                <div id="taskList">
+
+                    <div class="task">
+
+                        <div class="task-info">
+
+                            <div class="task-title">
+                                Learn JavaScript Functions
+                            </div>
+
+                            <div class="task-meta">
+                                High Priority
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="complete-btn"
+                            onclick="completeTask(this)">
+                            Complete
+                        </button>
+
+                    </div>
+
+
+                    <div class="task">
+
+                        <div class="task-info">
+
+                            <div class="task-title">
+                                Practice JavaScript Arrays
+                            </div>
+
+                            <div class="task-meta">
+                                Medium Priority
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="complete-btn"
+                            onclick="completeTask(this)">
+                            Complete
+                        </button>
+
+                    </div>
+
+
+                    <div class="task">
+
+                        <div class="task-info">
+
+                            <div class="task-title">
+                                Build a Mini Project
+                            </div>
+
+                            <div class="task-meta">
+                                High Priority
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="complete-btn"
+                            onclick="completeTask(this)">
+                            Complete
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        function addTask() {
+
+            const input =
+                document.getElementById("taskInput");
+
+            const priority =
+                document.getElementById("priorityInput");
+
+            const taskName =
+                input.value.trim();
+
+            if (taskName === "") {
+
+                alert("Please enter a study task.");
+
+                return;
+            }
+
+
+            const taskList =
+                document.getElementById("taskList");
+
+
+            const task =
+                document.createElement("div");
+
+            task.className = "task";
+
+
+            task.innerHTML = `
+
+                <div class="task-info">
+
+                    <div class="task-title">
+                        ${taskName}
+                    </div>
+
+                    <div class="task-meta">
+                        ${priority.value} Priority
+                    </div>
+
+                </div>
+
+                <button
+                    class="complete-btn"
+                    onclick="completeTask(this)">
+                    Complete
+                </button>
+
+            `;
+
+
+            taskList.appendChild(task);
+
+            input.value = "";
+
+            updateProgress();
+
+        }
+
+
+        function completeTask(button) {
+
+            if (button.classList.contains("completed")) {
+
+                button.classList.remove("completed");
+
+                button.textContent = "Complete";
+
+            } else {
+
+                button.classList.add("completed");
+
+                button.textContent = "Completed ✓";
+
+            }
+
+            updateProgress();
+
+        }
+
+
+        function updateProgress() {
+
+            const tasks =
+                document.querySelectorAll(".task");
+
+            const completed =
+                document.querySelectorAll(
+                    ".complete-btn.completed"
+                );
+
+
+            if (tasks.length === 0) {
+
+                return;
+
+            }
+
+
+            const percentage =
+                Math.round(
+                    (completed.length / tasks.length) * 100
+                );
+
+
+            document.getElementById(
+                "progressFill"
+            ).style.width = percentage + "%";
+
+
+            document.getElementById(
+                "progressText"
+            ).textContent =
+                percentage + "% completed";
+
+        }
+
+    </script>
+
+</body>
+</html>
