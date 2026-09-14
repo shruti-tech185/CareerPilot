@@ -204,7 +204,7 @@
     <main class="container">
 
         <div class="welcome">
-            <h1>Welcome to your Dashboard 👋</h1>
+           <h1>Welcome, <span id="studentName">Student</span> 👋</h1>
             <p>Track your learning, skills and career progress in one place.</p>
         </div>
 
@@ -311,17 +311,28 @@
 
     </main>
 
-    <script>
-        function completeTask(button) {
-            button.innerText = "Completed ✓";
-            button.style.background = "#16a34a";
-            button.disabled = true;
-        }
+  <script>
+    function completeTask(button) {
+        button.innerText = "Completed ✓";
+        button.style.background = "#16a34a";
+        button.disabled = true;
+    }
 
-        function openAI() {
-            alert("CareerPilot AI will be connected with Gemini API soon!");
-        }
-    </script>
+    function openAI() {
+        alert("CareerPilot AI will be connected with Gemini API soon!");
+    }
+</script>
+
+<script src="profile-data.js"></script>
+
+<script>
+    const profile = getProfileData();
+
+    if (profile && profile.name) {
+        document.getElementById("studentName").textContent = profile.name;
+    }
+</script>
 
 </body>
+</html>
 </html>
