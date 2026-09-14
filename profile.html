@@ -308,7 +308,17 @@
 
             event.preventDefault();
 
-            alert("Your profile has been saved successfully!");
+           const profile = {
+    name: document.getElementById("name").value,
+    education: document.getElementById("education").value,
+    stream: document.getElementById("stream").value,
+    year: document.getElementById("year").value,
+    career: document.getElementById("career").value
+};
+
+saveProfileData(profile);
+
+alert("Profile saved successfully!");
 
             window.location.href = "dashboard.html";
 
