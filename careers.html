@@ -353,36 +353,34 @@
 
     </main>
 
-    <script>
-        function showCareer(career) {
-            alert(
-                career +
-                " selected! CareerPilot will show your required skills and learning roadmap soon."
-            );
-        }
+  <script>
+    function showCareer(career) {
+        window.location.href =
+            "skills.html?career=" + encodeURIComponent(career);
+    }
 
-        function searchCareers() {
+    function searchCareers() {
 
-            const searchValue =
-                document.getElementById("searchInput").value.toLowerCase();
+        const searchValue =
+            document.getElementById("searchInput").value.toLowerCase();
 
-            const cards =
-                document.querySelectorAll(".career-card");
+        const cards =
+            document.querySelectorAll(".career-card");
 
-            cards.forEach(function(card) {
+        cards.forEach(function(card) {
 
-                const careerName =
-                    card.querySelector("h2").innerText.toLowerCase();
+            const careerName =
+                card.querySelector("h2").innerText.toLowerCase();
 
-                if (careerName.includes(searchValue)) {
-                    card.style.display = "block";
-                } else {
-                    card.style.display = "none";
-                }
+            if (careerName.includes(searchValue)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
 
-            });
-        }
-    </script>
+        });
+    }
+</script>
 
 </body>
 </html>
