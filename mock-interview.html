@@ -334,7 +334,20 @@
 
 
             document.getElementById("feedback").style.display =
-                "block";
+                "block";document.getElementById("feedback").style.display =
+    "block";
+
+const feedback = document.getElementById("feedback");
+
+feedback.innerHTML = `
+    🤖 <strong>ShrutiGuide AI Feedback:</strong>
+    <br><br>
+    ✅ Your answer has been submitted successfully.
+    <br><br>
+    💡 Keep your answer clear, relevant, and supported with an example.
+    <br><br>
+    📊 Score: <strong>Good</strong>
+`;
 
 
             const list = questions[currentCareer];
