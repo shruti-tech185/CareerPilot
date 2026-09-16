@@ -246,80 +246,80 @@
 
     <script>
 
-        const questions = {
+      const questions = {
 
-            frontend: [
-                "What is HTML and why is it used in web development?",
-                "What is the difference between Flexbox and CSS Grid?",
-                "What is JavaScript used for?",
-                "What is responsive web design?",
-                "What is React.js?"
-            ],
+    frontend: [
+        "What is HTML and why is it used in web development?",
+        "What is the difference between Flexbox and CSS Grid?",
+        "What is JavaScript used for?",
+        "What is responsive web design?",
+        "What is React.js?"
+    ],
 
-            data: [
-                "What is data analysis?",
-                "What is SQL used for?",
-                "What is the difference between data and information?",
-                "What is a database?",
-                "Why is data visualization important?"
-            ],
+    data: [
+        "What is data analysis?",
+        "What is SQL used for?",
+        "What is the difference between data and information?",
+        "What is a database?",
+        "Why is data visualization important?"
+    ],
 
-            software: [
-                "What is a programming language?",
-                "What is an algorithm?",
-                "What is object-oriented programming?",
-                "What is debugging?",
-                "What is version control?"
-            ],
+    software: [
+        "What is a programming language?",
+        "What is an algorithm?",
+        "What is object-oriented programming?",
+        "What is debugging?",
+        "What is version control?"
+    ],
 
-            ai: [
-                "What is Artificial Intelligence?",
-                "What is Machine Learning?",
-                "What is the difference between AI and ML?",
-                "What is a dataset?",
-                "What is a neural network?"
-            ]
+    ai: [
+        "What is Artificial Intelligence?",
+        "What is Machine Learning?",
+        "What is the difference between AI and ML?",
+        "What is a dataset?",
+        "What is a neural network?"
+    ]
 
-        };
+};
 
-
-        let currentCareer = "frontend";
-        let currentQuestion = 0;
-
-
-        function changeCareer() {
-
-            currentCareer =
-                document.getElementById("career").value;
-
-            currentQuestion = 0;
-
-            showQuestion();
-
-        }
+let currentCareer = "frontend";
+let currentQuestion = 0;
 
 
-        function showQuestion() {
+function changeCareer() {
 
-            const list = questions[currentCareer];
+    currentCareer =
+        document.getElementById("career").value;
 
-            document.getElementById("questionText").textContent =
-                list[currentQuestion];
+    currentQuestion = 0;
 
-            document.getElementById("progressText").textContent =
-                "Question " +
-                (currentQuestion + 1) +
-                " of " +
-                list.length;
+    showQuestion();
 
-            document.getElementById("answer").value = "";
-
-            document.getElementById("feedback").style.display = "none";
-
-        }
+}
 
 
-       function nextQuestion() {
+function showQuestion() {
+
+    const list = questions[currentCareer];
+
+    document.getElementById("questionText").textContent =
+        list[currentQuestion];
+
+    document.getElementById("progressText").textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        list.length;
+
+    document.getElementById("answer").value = "";
+
+    document.getElementById("feedback").style.display =
+        "none";
+
+}
+
+
+function nextQuestion() {
 
     const answer =
         document.getElementById("answer").value.trim();
@@ -374,13 +374,15 @@
     }
 
 }
-        function resetInterview() {
 
-            currentQuestion = 0;
 
-            showQuestion();
+function resetInterview() {
 
-        }
+    currentQuestion = 0;
+
+    showQuestion();
+
+}
 
     </script>
 
