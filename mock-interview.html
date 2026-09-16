@@ -323,6 +323,15 @@
 
             const answer =
                 document.getElementById("answer").value.trim();
+    
+
+            if (answer === "") {
+
+                alert("Please write your answer first.");
+
+                return;
+
+            }
             const scoreText = document.getElementById("scoreText");
 
 if (answer.length < 30) {
@@ -332,14 +341,6 @@ if (answer.length < 30) {
 } else {
     scoreText.textContent = "Excellent";
 }
-
-            if (answer === "") {
-
-                alert("Please write your answer first.");
-
-                return;
-
-            }
 
 
             document.getElementById("feedback").style.display =
