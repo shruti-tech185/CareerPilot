@@ -323,6 +323,15 @@
 
             const answer =
                 document.getElementById("answer").value.trim();
+            const scoreText = document.getElementById("scoreText");
+
+if (answer.length < 30) {
+    scoreText.textContent = "Needs Improvement";
+} else if (answer.length < 80) {
+    scoreText.textContent = "Good";
+} else {
+    scoreText.textContent = "Excellent";
+}
 
             if (answer === "") {
 
@@ -346,7 +355,7 @@ feedback.innerHTML = `
     <br><br>
     💡 Keep your answer clear, relevant, and supported with an example.
     <br><br>
-    📊 Score: <strong>Good</strong>
+   📊 Score: <strong id="scoreText">Good</strong>
 `;
 
 
