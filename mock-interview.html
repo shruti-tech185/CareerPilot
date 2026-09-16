@@ -319,71 +319,61 @@
         }
 
 
-        function nextQuestion() {
+       function nextQuestion() {
 
-            const answer =
-                document.getElementById("answer").value.trim();
-    
+    const answer =
+        document.getElementById("answer").value.trim();
 
-            if (answer === "") {
+    if (answer === "") {
 
-                alert("Please write your answer first.");
+        alert("Please write your answer first.");
 
-                return;
+        return;
 
-            }
-            const scoreText = document.getElementById("scoreText");
+    }
 
-if (answer.length < 30) {
-    scoreText.textContent = "Needs Improvement";
-} else if (answer.length < 80) {
-    scoreText.textContent = "Good";
-} else {
-    scoreText.textContent = "Excellent";
+    const scoreText =
+        document.getElementById("scoreText");
+
+    if (answer.length < 30) {
+
+        scoreText.textContent = "Needs Improvement";
+
+    } else if (answer.length < 80) {
+
+        scoreText.textContent = "Good";
+
+    } else {
+
+        scoreText.textContent = "Excellent";
+
+    }
+
+    document.getElementById("feedback").style.display =
+        "block";
+
+    const list = questions[currentCareer];
+
+    if (currentQuestion < list.length - 1) {
+
+        currentQuestion++;
+
+        setTimeout(showQuestion, 1200);
+
+    } else {
+
+        document.getElementById("progressText").textContent =
+            "Interview Completed ✓";
+
+        alert(
+            "🎤 Interview Completed!\n\n" +
+            "You answered all 5 questions.\n" +
+            "Keep practicing to improve your interview skills!"
+        );
+
+    }
+
 }
-
-
-            document.getElementById("feedback").style.display =
-                "block";document.getElementById("feedback").style.display =
-    "block";
-
-const feedback = document.getElementById("feedback");
-
-feedback.innerHTML = `
-    🤖 <strong>ShrutiGuide AI Feedback:</strong>
-    <br><br>
-    ✅ Your answer has been submitted successfully.
-    <br><br>
-    💡 Keep your answer clear, relevant, and supported with an example.
-    <br><br>
-   📊 Score: <strong id="scoreText">Good</strong>
-`;
-
-
-            const list = questions[currentCareer];
-
-
-            if (currentQuestion < list.length - 1) {
-
-                currentQuestion++;
-
-                setTimeout(showQuestion, 1200);
-
-            } else {
-
-                document.getElementById("progressText").textContent =
-                    "Interview Completed ✓";
-                alert(
-    "🎤 Interview Completed!\n\n" +
-    "You answered all 5 questions.\n" +
-    "Keep practicing to improve your interview skills!"
-);
-
-            }
-
-        }
-
-
         function resetInterview() {
 
             currentQuestion = 0;
